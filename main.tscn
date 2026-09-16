@@ -2,10 +2,25 @@
 
 [ext_resource type="PackedScene" uid="uid://dq11t6b5sol5t" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dtjo5nekn7p1e" path="res://gorani.tscn" id="2_0xm2m"]
+[ext_resource type="AudioStream" uid="uid://r12auk2bqank" path="res://audio_original/night_ambience_pack/night_ambience_loop_90s.ogg" id="3_h2yge"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_2i2l5"]
+vertices = PackedVector3Array(1.25, 0.3, 3.75, 8.75, 0.3, 2.75, 8.75, 0.3, 0.75, -0.75, 0.3, 3.5, 12.25, 0.3, -9.25, 12, 0.3, -10.75, 10.5, 0.3, 0.25, -1.5, 0.3, 4, 13.5, 0.3, -23.75, -23.75, 0.3, -23.75, -23.75, 0.3, 5, 12.5, 0.3, -11.5, 13.5, 0.3, -11.75, -1.75, 0.3, 5, 14.75, 0.3, -11.5, 15.25, 0.3, -10, 23.75, 0.3, -10, 23.75, 0.3, -23.75, 19, 0.3, 7.25, 19.25, 0.3, 8.25, 23.75, 0.3, 8.25, 11, 0.3, 3.25, 14.75, 0.3, 7.75, 15.75, 0.3, 6.75, 11.75, 0.3, 2.5, 14.25, 0.3, -8.5, 13, 0.3, -8.5, 11.75, 0.3, 1.25, 18, 0.3, 6.5, 15, 0.3, -9, 9.5, 0.3, 3.5, 14.5, 0.3, 9.25, 1.75, 0.3, 5.75, 15.75, 0.3, 23.75, 15.75, 0.3, 10.25, 1.25, 0.3, 6.5, 0, 0.3, 6.75, 0, 0.3, 23.75, -1.5, 0.3, 6.25, -23.75, 0.3, 23.75, 18.5, 0.3, 9.75, 23.75, 0.3, 23.75)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 4), PackedInt32Array(4, 3, 5), PackedInt32Array(2, 4, 6), PackedInt32Array(3, 7, 5), PackedInt32Array(5, 7, 8), PackedInt32Array(8, 7, 10), PackedInt32Array(8, 10, 9), PackedInt32Array(8, 12, 11), PackedInt32Array(8, 11, 5), PackedInt32Array(7, 13, 10), PackedInt32Array(16, 15, 14), PackedInt32Array(14, 12, 16), PackedInt32Array(16, 12, 8), PackedInt32Array(16, 8, 17), PackedInt32Array(20, 19, 18), PackedInt32Array(24, 23, 21), PackedInt32Array(21, 23, 22), PackedInt32Array(26, 25, 6), PackedInt32Array(6, 25, 27), PackedInt32Array(20, 18, 28), PackedInt32Array(24, 27, 23), PackedInt32Array(23, 27, 28), PackedInt32Array(29, 16, 25), PackedInt32Array(25, 16, 27), PackedInt32Array(27, 16, 28), PackedInt32Array(28, 16, 20), PackedInt32Array(29, 15, 16), PackedInt32Array(6, 4, 26), PackedInt32Array(21, 22, 30), PackedInt32Array(30, 22, 31), PackedInt32Array(32, 0, 1), PackedInt32Array(35, 31, 36), PackedInt32Array(36, 31, 34), PackedInt32Array(36, 34, 33), PackedInt32Array(36, 33, 37), PackedInt32Array(1, 30, 32), PackedInt32Array(32, 30, 35), PackedInt32Array(35, 30, 31), PackedInt32Array(38, 36, 37), PackedInt32Array(38, 37, 13), PackedInt32Array(13, 37, 10), PackedInt32Array(10, 37, 39), PackedInt32Array(19, 20, 40), PackedInt32Array(40, 20, 41), PackedInt32Array(40, 41, 33), PackedInt32Array(33, 34, 40)]
+agent_radius = 1.2
 
 [sub_resource type="BoxMesh" id="BoxMesh_4flbx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_onrkg"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2i2l5"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 6.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2i2l5"]
+height = 6.0
+radius = 0.3
 
 [sub_resource type="Environment" id="Environment_4flbx"]
 background_mode = 1
@@ -21,27 +36,66 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.015
 volumetric_fog_length = 30.0
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_2i2l5"]
-top_radius = 0.3
-bottom_radius = 0.3
-height = 6.0
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_2i2l5"]
-height = 6.0
-radius = 0.3
-
 [node name="Main" type="Node3D" unique_id=1473702223]
 
-[node name="Ground" type="StaticBody3D" parent="." unique_id=734598326]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=575908689]
+navigation_mesh = SubResource("NavigationMesh_2i2l5")
+
+[node name="Ground" type="StaticBody3D" parent="NavigationRegion3D" unique_id=734598326]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1292936402]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Ground" unique_id=1292936402]
 transform = Transform3D(50, 0, 0, 0, 0.2, 0, 0, 0, 50, 0, 0, 0)
 mesh = SubResource("BoxMesh_4flbx")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=237128301]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Ground" unique_id=237128301]
 transform = Transform3D(50, 0, 0, 0, 0.2, 0, 0, 0, 50, 0, 0, 0)
 shape = SubResource("BoxShape3D_onrkg")
+
+[node name="tree1" type="StaticBody3D" parent="NavigationRegion3D" unique_id=765059041]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 5.132406)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/tree1" unique_id=321745700]
+mesh = SubResource("CylinderMesh_2i2l5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/tree1" unique_id=220068514]
+shape = SubResource("CylinderShape3D_2i2l5")
+
+[node name="tree2" type="StaticBody3D" parent="NavigationRegion3D" unique_id=2094968477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.160945, 3, 1.8952122)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/tree2" unique_id=2119714329]
+mesh = SubResource("CylinderMesh_2i2l5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/tree2" unique_id=1802183221]
+shape = SubResource("CylinderShape3D_2i2l5")
+
+[node name="tree3" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1148827368]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.678027, 3, -10.088681)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/tree3" unique_id=1766529178]
+mesh = SubResource("CylinderMesh_2i2l5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/tree3" unique_id=1964255404]
+shape = SubResource("CylinderShape3D_2i2l5")
+
+[node name="tree4" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1410518193]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.176434, 3, 8.525949)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/tree4" unique_id=1687640950]
+mesh = SubResource("CylinderMesh_2i2l5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/tree4" unique_id=1043616707]
+shape = SubResource("CylinderShape3D_2i2l5")
+
+[node name="tree5" type="StaticBody3D" parent="NavigationRegion3D" unique_id=118057241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.53275, 3, 8.271853)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/tree5" unique_id=924269900]
+mesh = SubResource("CylinderMesh_2i2l5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/tree5" unique_id=1061555502]
+shape = SubResource("CylinderShape3D_2i2l5")
 
 [node name="Player" parent="." unique_id=292789422 groups=["player"] instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
@@ -58,20 +112,7 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1342661427]
 environment = SubResource("Environment_4flbx")
 
-[node name="tree1" type="StaticBody3D" parent="." unique_id=765059041]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 5.132406)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="tree1" unique_id=321745700]
-mesh = SubResource("CylinderMesh_2i2l5")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tree1" unique_id=220068514]
-shape = SubResource("CylinderShape3D_2i2l5")
-
-[node name="tree2" type="StaticBody3D" parent="." unique_id=2094968477]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.160945, 3, 1.8952122)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="tree2" unique_id=2119714329]
-mesh = SubResource("CylinderMesh_2i2l5")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tree2" unique_id=1802183221]
-shape = SubResource("CylinderShape3D_2i2l5")
+[node name="NightAmbience" type="AudioStreamPlayer" parent="." unique_id=1866909430]
+stream = ExtResource("3_h2yge")
+volume_db = -16.0
+autoplay = true

@@ -24,3 +24,6 @@ light_energy = 4.0
 shadow_enabled = true
 spot_range = 25.0
 spot_angle = 42.5
+
+[node name="FootstepAudio" type="AudioStreamPlayer" parent="." unique_id=1487614780]
+volume_db = -20.0
