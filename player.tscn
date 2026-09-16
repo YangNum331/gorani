@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dq11t6b5sol5t"]
+
+[ext_resource type="Script" uid="uid://rfj3cp28hdfp" path="res://player.gd" id="1_4flbx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
+radius = 0.35
+height = 1.8
+
+[node name="Player" type="CharacterBody3D" unique_id=292789422]
+script = ExtResource("1_4flbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=277474616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_sh265")
+
+[node name="Head" type="Node3D" parent="." unique_id=329333740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1216014926]
+current = true
+
+[node name="SmartphoneFlash" type="SpotLight3D" parent="Head" unique_id=785021710]
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 25.0
+spot_angle = 42.5

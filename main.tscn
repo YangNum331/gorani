@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://3eoa27x32351"]
+
+[ext_resource type="PackedScene" uid="uid://dq11t6b5sol5t" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dtjo5nekn7p1e" path="res://gorani.tscn" id="2_0xm2m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4flbx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_onrkg"]
+
+[sub_resource type="Environment" id="Environment_4flbx"]
+background_mode = 1
+background_color = Color(0, 0, 0.09019608, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0, 0, 0.1882353, 1)
+ambient_light_energy = 0.08
+tonemap_mode = 3
+fog_enabled = true
+fog_light_color = Color(1.0648929e-06, 0.060210943, 0.23289344, 1)
+fog_density = 0.008
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.015
+volumetric_fog_length = 30.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2i2l5"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 6.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2i2l5"]
+height = 6.0
+radius = 0.3
+
+[node name="Main" type="Node3D" unique_id=1473702223]
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=734598326]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1292936402]
+transform = Transform3D(50, 0, 0, 0, 0.2, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("BoxMesh_4flbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=237128301]
+transform = Transform3D(50, 0, 0, 0, 0.2, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("BoxShape3D_onrkg")
+
+[node name="Player" parent="." unique_id=292789422 groups=["player"] instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="Gorani" parent="." unique_id=163459336 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -15)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=792156979]
+transform = Transform3D(0.8660254, 0.35355338, -0.35355338, 0, 0.70710677, 0.70710677, 0.5, -0.6123724, 0.6123724, 0, 0, 0)
+light_color = Color(0.8910382, 0.99971396, 1, 1)
+light_energy = 0.08
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1342661427]
+environment = SubResource("Environment_4flbx")
+
+[node name="tree1" type="StaticBody3D" parent="." unique_id=765059041]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 5.132406)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="tree1" unique_id=321745700]
+mesh = SubResource("CylinderMesh_2i2l5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tree1" unique_id=220068514]
+shape = SubResource("CylinderShape3D_2i2l5")
+
+[node name="tree2" type="StaticBody3D" parent="." unique_id=2094968477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.160945, 3, 1.8952122)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="tree2" unique_id=2119714329]
+mesh = SubResource("CylinderMesh_2i2l5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tree2" unique_id=1802183221]
+shape = SubResource("CylinderShape3D_2i2l5")
