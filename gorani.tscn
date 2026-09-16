@@ -1,7 +1,16 @@
 [gd_scene format=3 uid="uid://dtjo5nekn7p1e"]
 
 [ext_resource type="Script" uid="uid://c0nt81ukwu7q8" path="res://gorani.gd" id="1_2g1t1"]
+[ext_resource type="PackedScene" uid="uid://dwdvh1gxl4pdf" path="res://assets/gorani/model/Skeletal_Base_Mesh.fbx" id="2_0t3e4"]
 [ext_resource type="AudioStream" uid="uid://bf17rday87gk7" path="res://audio/gorani/calls/gorani_chase_scream.wav" id="2_1wxeh"]
+[ext_resource type="Texture2D" uid="uid://bhhtabcbfyboe" path="res://assets/gorani/textuers/gorani_albedo.png" id="3_7os7n"]
+[ext_resource type="AnimationLibrary" uid="uid://cddl65k6hkkwi" path="res://assets/gorani/animations/3. Run.fbx" id="3_cw44t"]
+[ext_resource type="AnimationLibrary" uid="uid://doddddh3fsmfr" path="res://assets/gorani/animations/1. Idle.fbx" id="3_rtqle"]
+[ext_resource type="Texture2D" uid="uid://cppwdtiqhpqpj" path="res://assets/gorani/textuers/gorani_metallic.png" id="4_cw44t"]
+[ext_resource type="Texture2D" uid="uid://b5nhr33oubkic" path="res://assets/gorani/textuers/gorani_normal.png" id="5_5er2d"]
+[ext_resource type="AnimationLibrary" uid="uid://b0eiubqy52p5d" path="res://assets/gorani/animations/5. Sight.fbx" id="5_qbtgd"]
+[ext_resource type="Texture2D" uid="uid://b0c570wmc50hx" path="res://assets/gorani/textuers/gorani_roughness.png" id="6_etfj1"]
+[ext_resource type="AnimationLibrary" uid="uid://dqhxt3yjley1j" path="res://assets/gorani/animations/6. Attack_1.fbx" id="6_iseal"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2i2l5"]
 radius = 0.6
@@ -9,9 +18,13 @@ height = 1.6
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1bvp3"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_6dxj4"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_uds3p"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0t3e4"]
+albedo_texture = ExtResource("3_7os7n")
+metallic = 1.0
+metallic_texture = ExtResource("4_cw44t")
+roughness_texture = ExtResource("6_etfj1")
+normal_enabled = true
+normal_texture = ExtResource("5_5er2d")
 
 [node name="Gorani" type="CharacterBody3D" unique_id=163459336]
 script = ExtResource("1_2g1t1")
@@ -31,13 +44,49 @@ avoidance_enabled = true
 
 [node name="Visual" type="Node3D" parent="." unique_id=1520621156]
 
-[node name="Body" type="MeshInstance3D" parent="Visual" unique_id=1725039744]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 1.2, 0, 0.9, 0)
-mesh = SubResource("CapsuleMesh_6dxj4")
+[node name="Skeletal_Base_Mesh" parent="Visual" unique_id=1492690753 instance=ExtResource("2_0t3e4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Head" type="MeshInstance3D" parent="Visual" unique_id=1290770678]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.8, 0, 1.5, -0.8)
-mesh = SubResource("SphereMesh_uds3p")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/Skeletal_Base_Mesh/Character" parent_id_path=PackedInt32Array(1492690753, 1631889427) index="0" unique_id=271369638]
+"libraries/1. Idle" = ExtResource("3_rtqle")
+"libraries/3. Run" = ExtResource("3_cw44t")
+"libraries/5. Sight" = ExtResource("5_qbtgd")
+"libraries/6. Attack_1" = ExtResource("6_iseal")
+
+[node name="Skeleton3D" parent="Visual/Skeletal_Base_Mesh" index="1" unique_id=1005804738]
+bones/1/rotation = Quaternion(0.05965566, 0, 0, 0.9982191)
+bones/2/rotation = Quaternion(-0.075798385, 0, 0, 0.99712324)
+bones/4/position = Vector3(0, 0.013456176, 0.22152403)
+bones/4/rotation = Quaternion(-7.026452e-10, 0, 0, 1)
+bones/6/rotation = Quaternion(0.01769803, 0, 0, 0.9998435)
+bones/7/rotation = Quaternion(-0.013927324, 0.05612852, -0.03820591, 0.99759513)
+bones/8/rotation = Quaternion(-0.02077127, -0.018680524, 0.016440125, 0.9994746)
+bones/10/rotation = Quaternion(-0.0068025026, 0, 0, 0.9999769)
+bones/11/rotation = Quaternion(7.2946427e-10, 0.40420052, -4.386844e-09, 0.9146704)
+bones/12/rotation = Quaternion(-0.06754871, 0.027433176, 0.028163241, 0.9969411)
+bones/13/rotation = Quaternion(0.9146704, 3.0113094e-09, 0.4042005, 1.3420671e-09)
+bones/15/rotation = Quaternion(0.19673833, 0.16502339, -0.6802361, 0.6865422)
+bones/16/rotation = Quaternion(0.0016120918, -0.28038728, -0.005805684, 0.959868)
+bones/17/rotation = Quaternion(-0.00019864811, 0.054357685, 0.008571316, 0.99848473)
+bones/18/rotation = Quaternion(-0.005299742, -0.3022532, 0.013644586, 0.9531153)
+bones/19/rotation = Quaternion(4.869882e-06, 0.0036073173, -0.00012903751, 0.9999935)
+bones/20/rotation = Quaternion(0.68598753, 0.67960083, 0.16726373, -0.19896436)
+bones/21/rotation = Quaternion(0.0015095999, -0.28976887, -0.0055653695, 0.9570793)
+bones/22/rotation = Quaternion(-0.00016246244, 0.064463794, 0.00816234, 0.9978867)
+bones/23/rotation = Quaternion(-0.005299745, -0.3022532, 0.013644584, 0.9531153)
+bones/24/rotation = Quaternion(1.5837636e-15, 1.7230659e-13, -3.119931e-08, 1)
+bones/25/rotation = Quaternion(0.1472437, 0.022228556, -0.6749874, 0.722646)
+bones/26/rotation = Quaternion(0.00233621, 0.3094447, -0.026899401, 0.950534)
+bones/27/rotation = Quaternion(-0.06886146, -0.25112867, -0.04920621, 0.9642465)
+bones/28/rotation = Quaternion(-0.018206244, -0.34706944, -0.0005413405, 0.93766254)
+bones/29/rotation = Quaternion(-0.0038024911, -0.00051152724, 0.0056403787, 0.9999768)
+bones/30/rotation = Quaternion(0.74482113, 0.65686274, 0.08401581, -0.08194024)
+bones/31/rotation = Quaternion(0.0023503152, 0.31047535, -0.027014263, 0.95019466)
+bones/32/rotation = Quaternion(-0.073266275, -0.25151563, -0.04541508, 0.9640071)
+bones/34/rotation = Quaternion(1.8521091e-09, -7.605534e-09, -1.2583295e-12, 1)
+
+[node name="body" parent="Visual/Skeletal_Base_Mesh/Skeleton3D" index="3" unique_id=1926527269]
+material_override = SubResource("StandardMaterial3D_0t3e4")
 
 [node name="ScreamAudio" type="AudioStreamPlayer3D" parent="." unique_id=1657431880]
 stream = ExtResource("2_1wxeh")
@@ -45,3 +94,5 @@ max_distance = 40.0
 
 [node name="HoofAudio" type="AudioStreamPlayer3D" parent="." unique_id=1325456908]
 max_distance = 40.0
+
+[editable path="Visual/Skeletal_Base_Mesh"]
