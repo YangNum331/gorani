@@ -40,6 +40,13 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={
+"materials": {
+"lambert2": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/gorani/materials/lambert2.tres",
+"use_external/path": "uid://uodx2vvb42vb"
+}
+},
 "nodes": {
 "PATH:Skeleton3D": {
 "retarget/bone_map": Object(BoneMap,"resource_local_to_scene":false,"resource_name":"","profile":Resource("uid://cgoi40aov8fiv", "res://assets/gorani/gorani_skeleton_profile.tres"),"bonemap":null,"bone_map/root":&"","bone_map/pelvis":&"","bone_map/tail":&"","bone_map/spine_1":&"","bone_map/spine_2":&"","bone_map/spine_3":&"","bone_map/spine_4":&"","bone_map/neck_1":&"","bone_map/neck_2":&"","bone_map/head":&"","bone_map/jaw":&"","bone_map/eyelid_L":&"","bone_map/ear_L":&"","bone_map/eyelid_R":&"","bone_map/ear_R":&"","bone_map/f_leg_1_L":&"","bone_map/f_leg_2_L":&"","bone_map/f_leg_3_L":&"","bone_map/f_leg_4_L":&"","bone_map/f_leg_5_L":&"","bone_map/f_leg_1_R":&"","bone_map/f_leg_2_R":&"","bone_map/f_leg_3_R":&"","bone_map/f_leg_4_R":&"","bone_map/f_leg_5_R":&"","bone_map/b_leg_1_L":&"","bone_map/b_leg_2_L":&"","bone_map/b_leg_3_L":&"","bone_map/b_leg_4_L":&"","bone_map/b_leg_5_L":&"","bone_map/b_leg_1_R":&"","bone_map/b_leg_2_R":&"","bone_map/b_leg_3_R":&"","bone_map/b_leg_4_R":&"","bone_map/b_leg_5_R":&"","script":null)

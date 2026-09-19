@@ -85,7 +85,6 @@ func _ready() -> void:
 
 	camera_base_position = camera.position
 
-
 	_create_death_fade()
 
 
@@ -97,9 +96,7 @@ func _create_death_fade() -> void:
 
 	fade_layer = CanvasLayer.new()
 
-	add_child(
-		fade_layer
-	)
+	add_child(fade_layer)
 
 
 	fade_rect = ColorRect.new()
@@ -122,9 +119,7 @@ func _create_death_fade() -> void:
 	)
 
 
-	fade_layer.add_child(
-		fade_rect
-	)
+	fade_layer.add_child(fade_rect)
 
 
 # =========================
@@ -134,7 +129,6 @@ func _create_death_fade() -> void:
 func _process(delta: float) -> void:
 
 	if dead:
-
 		_update_death_shake(delta)
 
 
@@ -148,20 +142,21 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 
 
+	# 마우스만 카메라/손전등 방향 변경
 	if event is InputEventMouseMotion \
 	and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 
+		# 좌우 회전
 		rotate_y(
 			-event.relative.x
 			* mouse_sensitivity
 		)
 
-
+		# 위아래 회전
 		head.rotate_x(
 			-event.relative.y
 			* mouse_sensitivity
 		)
-
 
 		head.rotation.x = clamp(
 			head.rotation.x,
@@ -170,18 +165,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		)
 
 
+	# 손전등 ON/OFF
 	if event.is_action_pressed("flashlight"):
 
-		flashlight.visible = (
-			!flashlight.visible
-		)
+		flashlight.visible = !flashlight.visible
 
 
 	if event.is_action_pressed("ui_cancel"):
 
-		Input.mouse_mode = (
-			Input.MOUSE_MODE_VISIBLE
-		)
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 	if event is InputEventMouseButton:
@@ -189,9 +181,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.pressed \
 		and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 
-			Input.mouse_mode = (
-				Input.MOUSE_MODE_CAPTURED
-			)
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 # =========================
@@ -226,10 +216,8 @@ func _physics_process(delta: float) -> void:
 	).normalized()
 
 
-	var sprinting := (
-		Input.is_action_pressed(
-			"sprint"
-		)
+	var sprinting := Input.is_action_pressed(
+		"sprint"
 	)
 
 
@@ -237,7 +225,6 @@ func _physics_process(delta: float) -> void:
 
 
 	if sprinting:
-
 		target_speed = sprint_speed
 
 
@@ -249,13 +236,11 @@ func _physics_process(delta: float) -> void:
 			acceleration * delta
 		)
 
-
 		velocity.z = move_toward(
 			velocity.z,
 			direction.z * target_speed,
 			acceleration * delta
 		)
-
 
 	else:
 
@@ -264,7 +249,6 @@ func _physics_process(delta: float) -> void:
 			0.0,
 			deceleration * delta
 		)
-
 
 		velocity.z = move_toward(
 			velocity.z,
@@ -305,14 +289,12 @@ func update_footsteps(
 	if input_dir.length() < 0.1:
 
 		step_timer = 0.0
-
 		return
 
 
 	if not is_on_floor():
 
 		step_timer = 0.0
-
 		return
 
 
@@ -326,11 +308,9 @@ func update_footsteps(
 		)
 
 
-		footstep_audio.pitch_scale = (
-			randf_range(
-				0.96,
-				1.04
-			)
+		footstep_audio.pitch_scale = randf_range(
+			0.96,
+			1.04
 		)
 
 
@@ -339,15 +319,11 @@ func update_footsteps(
 
 		if sprinting:
 
-			step_timer = (
-				sprint_step_interval
-			)
+			step_timer = sprint_step_interval
 
 		else:
 
-			step_timer = (
-				walk_step_interval
-			)
+			step_timer = walk_step_interval
 
 
 # =========================
@@ -363,7 +339,6 @@ func die(
 
 
 	dead = true
-
 
 	velocity = Vector3.ZERO
 
@@ -390,17 +365,13 @@ func die(
 
 
 	# 죽을 때 카메라 흔들기
-	death_shake_timer = (
-		death_shake_duration
-	)
+	death_shake_timer = death_shake_duration
 
 
 	# 몸이 아래로 쓰러지는 연출
 	var fall_tween := create_tween()
 
-	fall_tween.set_parallel(
-		true
-	)
+	fall_tween.set_parallel(true)
 
 
 	fall_tween.tween_property(
@@ -456,9 +427,7 @@ func _update_death_shake(
 
 	if death_shake_timer <= 0.0:
 
-		camera.position = (
-			camera_base_position
-		)
+		camera.position = camera_base_position
 
 		return
 

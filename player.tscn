@@ -20,10 +20,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 current = true
 
 [node name="SmartphoneFlash" type="SpotLight3D" parent="Head" unique_id=785021710]
-light_energy = 4.0
+light_energy = 1.3
+light_specular = 0.0
 shadow_enabled = true
-spot_range = 25.0
-spot_angle = 42.5
+spot_range = 15.0
+spot_angle = 40.0
+spot_angle_attenuation = 0.40612575
 
 [node name="FootstepAudio" type="AudioStreamPlayer" parent="." unique_id=1487614780]
 volume_db = -20.0
